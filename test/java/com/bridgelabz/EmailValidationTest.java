@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import com.bridgelabz.userregistrationtesting.InvalidCredentialsException;
 import com.bridgelabz.userregistrationtesting.UserRegistrationTesting;
 import org.junit.Assert;
 import org.junit.Test;
@@ -48,10 +49,12 @@ public class EmailValidationTest {
     }
 
     @Test
-    public void giveEmail_ValidateAsPerGivenParameters() {
+    public void giveEmail_ValidateAsPerGivenParameters_ThrowExceptionIfInvalid() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validateEmail(emailToTest);
-        Assert.assertEquals(this.validation, validation);
+        if(this.validation != validation) {
+            throw new InvalidCredentialsException("Email is invalid");
+        }
     }
-
+    
 }

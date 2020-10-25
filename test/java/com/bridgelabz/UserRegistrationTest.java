@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import com.bridgelabz.userregistrationtesting.InvalidCredentialsException;
 import com.bridgelabz.userregistrationtesting.UserRegistrationTesting;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,17 +15,21 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void givenFirstName_WhenLessThanThreeLetters_ShouldReturnFalse() {
+    public void givenFirstName_WhenLessThanThreeLetters_ShouldThrowException() throws InvalidCredentialsException {
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validateFirstName("Sh");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("First name should have at least three letters");
+        }
     }
 
     @Test
-    public void givenFirstName_WhenFirstLetterNotUppercase_ShouldReturnFalse() {
+    public void givenFirstName_WhenFirstLetterNotUppercase_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validateFirstName("shravya");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("First letter should be uppercase");
+        }
     }
 
     @Test
@@ -35,17 +40,21 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void givenLastName_WhenLessThanThreeLetters_ShouldReturnFalse() {
+    public void givenLastName_WhenLessThanThreeLetters_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validateLastName("Ko");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Last name should have at least three letters");
+        }
     }
 
     @Test
-    public void givenLastName_WhenFirstLetterNotUppercase_ShouldReturnFalse() {
+    public void givenLastName_WhenFirstLetterNotUppercase_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validateLastName("kotha");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("First letter should be uppercase");
+        }
     }
 
     @Test
@@ -56,24 +65,30 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void givenPhoneNumber_WhenNoCountryCode_ShouldReturnFalse() {
+    public void givenPhoneNumber_WhenNoCountryCode_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePhoneNumber(" 9591266655");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Phone number should have country code");
+        }
     }
 
     @Test
-    public void givenPhoneNumber_WhenNoSpace_ShouldReturnFalse() {
+    public void givenPhoneNumber_WhenNoSpace_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePhoneNumber("919591266655");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("There should be a space between country code and phone number");
+        }
     }
 
     @Test
-    public void givenPhoneNumber_WhenLessThanTenDigits_ShouldReturnFalse() {
+    public void givenPhoneNumber_WhenLessThanTenDigits_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePhoneNumber("91 959126665");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Phone number should have at least ten digits");
+        }
     }
 
     @Test
@@ -84,31 +99,39 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void givenPassword_WhenLessThanEightCharacters_ShouldReturnFalse() {
+    public void givenPassword_WhenLessThanEightCharacters_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePassword("shravya");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Password should have at least eight characters");
+        }
     }
 
     @Test
-    public void givenPassword_WhenNoUppercaseLetters_ShouldReturnFalse() {
+    public void givenPassword_WhenNoUppercaseLetters_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePassword("shravyak");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Password should have at least one uppercase letter");
+        }
     }
 
     @Test
-    public void givenPassword_WhenNoNumbers_ShouldReturnFalse() {
+    public void givenPassword_WhenNoNumbers_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePassword("Shravyak");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Password should have at least one number");
+        }
     }
 
     @Test
-    public void givenPassword_WhenNoSpecialCharacters_ShouldReturnFalse() {
+    public void givenPassword_WhenNoSpecialCharacters_ShouldThrowException() throws InvalidCredentialsException{
         UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
         boolean validation = userRegistrationTesting.validatePassword("Shravyak1");
-        Assert.assertFalse(validation);
+        if(!validation) {
+            throw new InvalidCredentialsException("Password should have at least one special character");
+        }
     }
 
 }
