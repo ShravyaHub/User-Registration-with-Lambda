@@ -7,6 +7,7 @@ public class UserRegistrationMain {
     public static final String NAME_REGEX = "^[A-Z][a-z]{2,}$";
     public static final String EMAIL_REGEX = "^([a-z0-9]+[-._+]?[a-z0-9]+)+@[a-z0-9-]+.[a-z]{2,3}.[a-z]{2,3}$";
     public static final String PHONE_NUMBER_REGEX = "^[9][1][ ][6-9][0-9]{9}$";
+    public static final String PASSWORD_REGEX = "^.{8,}$";
 
     Scanner scanner = new Scanner(System.in);
 
@@ -16,6 +17,7 @@ public class UserRegistrationMain {
         userRegistrationMain.validateLastName();
         userRegistrationMain.validateEmail();
         userRegistrationMain.validatePhoneNumber();
+        userRegistrationMain.validatePassword();
     }
 
     public void validateFirstName() {
@@ -52,6 +54,15 @@ public class UserRegistrationMain {
             System.out.println("Phone number is valid");
         else
             System.out.println("Phone number is invalid");
+    }
+
+    public void validatePassword() {
+        System.out.println("Enter password: ");
+        String password = scanner.nextLine();
+        if(password.matches(PASSWORD_REGEX))
+            System.out.println("Password is valid");
+        else
+            System.out.println("Password is invalid");
     }
 
 }
