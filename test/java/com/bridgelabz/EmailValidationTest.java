@@ -50,10 +50,14 @@ public class EmailValidationTest {
 
     @Test
     public void giveEmail_ValidateAsPerGivenParameters_ThrowExceptionIfInvalid() throws InvalidCredentialsException{
-        UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
-        boolean validation = userRegistrationTesting.validateEmail(emailToTest);
-        if(this.validation != validation) {
-            throw new InvalidCredentialsException("Email is invalid");
+        try {
+            UserRegistrationTesting userRegistrationTesting = new UserRegistrationTesting();
+            boolean validation = userRegistrationTesting.validateEmail(emailToTest);
+            if (this.validation != validation) {
+                throw new InvalidCredentialsException("Email is invalid");
+            }
+        } catch(InvalidCredentialsException invalidCredentialsException) {
+            System.out.println(invalidCredentialsException.getMessage());
         }
     }
     
